@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f0f0f0;
+    }
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      padding: 1rem 2rem;
+      background: #ddd;
+      margin-right: 1rem;
+      cursor: pointer;
+      border-radius: 5px 5px 0 0;
+      user-select: none;
+    }
+    .tab.active {
+      background: #fff;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .tab-content {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 0 5px 5px 5px;
+      box-shadow: 0 0 5px #ccc;
+    }
+    .content-section {
+      display: none;
+    }
+    .content-section.active {
+      display: block;
+    }
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 2rem;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    input[type="text"], select {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dashboard</h1>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('contact')">Contact</div>
+    <div class="tab" onclick="showTab('deals')">Deals</div>
+    <div class="tab" onclick="showTab('products')">Products</div>
+  </div>
+
+  <div class="tab-content">
+    <!-- Contact Tab -->
+    <div id="contact" class="content-section active">
+      <form>
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" />
+        </div>
+        <div>
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="Enter your city" />
+        </div>
+      </form>
+    </div>
+
+    <!-- Deals Tab -->
+    <div id="deals" class="content-section">
+      <form>
+        <div>
+          <label for="dealPercent">Deals Percentage</label>
+          <select id="dealPercent" name="dealPercent">
+            <option value="">Select %</option>
+            <option value="10%">10%</option>
+            <option value="20%">20%</option>
+            <option value="30%">30%</option>
+            <option value="40%">40%</option>
+            <option value="50%">50%</option>
+          </select>
+        </div>
+        <div>
+          <label for="productType">Product Type</label>
+          <select id="productType" name="productType">
+            <option value="">Select Type</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Books">Books</option>
+            <option value="Home">Home</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <!-- Products Tab -->
+    <div id="products" class="content-section">
+      <form>
+        <div>
+          <label for="productName">Product Name</label>
+          <select id="productName" name="productName">
+            <option value="">Select Product</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Smartphone">Smartphone</option>
+            <option value="T-shirt">T-shirt</option>
+            <option value="Book">Book</option>
+          </select>
+        </div>
+        <div>
+          <label for="productPrice">Product Price</label>
+          <select id="productPrice" name="productPrice">
+            <option value="">Select Price</option>
+            <option value="$1000">$1000</option>
+            <option value="$700">$700</option>
+            <option value="$25">$25</option>
+            <option value="$15">$15</option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      // Remove active class from all tabs
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      // Hide all content sections
+      document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+      // Add active to clicked tab and its content
+      const activeTab = document.querySelector(`.tab[onclick="showTab('${tabId}')"]`);
+      if(activeTab) activeTab.classList.add('active');
+      const activeSection = document.getElementById(tabId);
+      if(activeSection) activeSection.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
